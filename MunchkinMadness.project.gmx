@@ -31,7 +31,9 @@
       <script>scripts\gui_show_player_item.gml</script>
       <script>scripts\init_gui_control.gml</script>
       <script>scripts\draw_gui.gml</script>
-      <script>scripts\healthbar.gml</script>
+      <script>scripts\draw_obj_healthbar.gml</script>
+      <script>scripts\draw_target_healthbar.gml</script>
+      <script>scripts\draw_target_manabar.gml</script>
     </scripts>
     <scripts name="Monster">
       <script>scripts\control_monster.gml</script>

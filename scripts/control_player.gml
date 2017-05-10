@@ -27,23 +27,27 @@ if (is_turn) {
            x += plyr_speed
            plyr_direction = DIR_RIGHT
         }
+        obj_mana += obj_mana_regen
+        if (obj_mana > obj_max_mana) {
+            obj_mana = 20
+        }
     
     }
     else {
-        if (x == plyr_warp_point_x && y ==  plyr_warp_point_y || plyr_warp_strength <= 0) {
+        if (x == plyr_warp_point_x && y ==  plyr_warp_point_y || obj_mana <= 0) {
             plyr_is_warping = false
-            plyr_warp_strength = 20
+            //obj_mana = 20
             speed = 0
         }
         else if (point_distance(x,y,plyr_warp_point_x,plyr_warp_point_y) < 30) {
             plyr_is_warping = false
-            plyr_warp_strength = 20
+            //obj_mana = 20
             speed = 0
         }
         else {
         
             move_towards_point(plyr_warp_point_x,plyr_warp_point_y,30)
-            plyr_warp_strength -= 1
+            obj_mana -= 1
         }
     
     }
@@ -71,11 +75,17 @@ if (is_turn) {
     }
     
     if (mouse_check_button_pressed(mb_right)) {
-        if (!plyr_is_warping) {
+        if (!plyr_is_warping && obj_mana > 5) {
             plyr_is_warping = true
             plyr_warp_point_x = mouse_x
             plyr_warp_point_y = mouse_y
             
+            if (plyr_warp_point_x < x) {
+                plyr_direction = DIR_LEFT
+            }
+            else if (plyr_warp_point_x > x) {
+                plyr_direction = DIR_RIGHT
+            }
         }
     
     }

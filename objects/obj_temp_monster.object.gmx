@@ -232,7 +232,7 @@ if (obj_health &lt;= 0 &amp;&amp; is_dead != true) {
         <arguments>
           <argument>
             <kind>9</kind>
-            <script>healthbar</script>
+            <script>draw_obj_healthbar</script>
           </argument>
           <argument>
             <kind>0</kind>

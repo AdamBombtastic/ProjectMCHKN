@@ -39,14 +39,31 @@ for (i=0; i < no_players; i++) {
     draw_set_alpha(1)
     
     draw_set_font(tmp_font)
-    draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 10,
-                     bottom_player_y + 10,
+    draw_text(50 + bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 10,
+                     bottom_player_y + 5,
                      "Player " + string(i+1))
-    draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 10,
+    draw_target_healthbar(temp_plyr, 
+                          bottom_player_x + (i * next_player_status_width) + i*next_player_padding + string_width("HP: ") + 15,
+                          bottom_player_y + 10 + string_height("A"),
+                          145,
+                          18)
+     draw_target_manabar(temp_plyr, 
+                          bottom_player_x + (i * next_player_status_width) + i*next_player_padding + string_width("HP: ") + 15,
+                          bottom_player_y + 10 + string_height("A")*2,
+                          145,
+                          18)             
+                     
+     draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 10,
               bottom_player_y + 10 + string_height("A"),
+              "HP: ")
+     draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 10,
+              bottom_player_y + 10 + string_height("A")*2,
+              "MP: ")
+    draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 10,
+              bottom_player_y + 10 + string_height("A")*3,
               "LVL: " +string(temp_plyr.plyr_lvl))
     draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 10,
-              bottom_player_y + 10 + (string_height("A") * 2),
+              bottom_player_y + 10 + (string_height("A") * 4),
               "ATK: " +string(temp_plyr.plyr_attack))                
                      
     
