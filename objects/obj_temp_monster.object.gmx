@@ -145,8 +145,10 @@ Temporary Hit Damage
 
 if (!other.hit) {
     is_hurt = true
-    obj_health -=1
+    obj_health -= other.attack
     other.hit = true
+    
+    
     
     /**
     x_diff = other.x - x
@@ -157,11 +159,17 @@ if (!other.hit) {
     **/
 }
 
-if (obj_health &lt;= 0) {
+if (obj_health &lt;= 0 &amp;&amp; is_dead != true) {
     is_dead = true
     path_end()
+    obj_gui.current_player.plyr_lvl += 1
+    obj_gui.current_player.needs_update = true
     
-}
+    effect_create_above(ef_star, obj_gui.current_player.x, obj_gui.current_player.y-32, 1.8, merge_color(c_white,c_yellow,0.5))
+    effect_create_above(ef_star, obj_gui.current_player.x-16, obj_gui.current_player.y-32, 1.8, merge_color(c_white,c_yellow,0.5))
+    effect_create_above(ef_star, obj_gui.current_player.x+16, obj_gui.current_player.y-32, 1.8, merge_color(c_white,c_yellow,0.5))
+    effect_create_above(ef_firework, other.x, other.y, 0.5, c_white);
+   }
 </string>
           </argument>
         </arguments>

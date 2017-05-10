@@ -30,6 +30,7 @@ start_frame = 1
 
 depth= -1
 hit = false
+attack = 1
 </string>
           </argument>
         </arguments>

@@ -7,7 +7,7 @@ Animate_Player
 
 
 
-
+image_blend = plyr_color
 image_speed = 0
 if (plyr_direction == DIR_LEFT) {
     image_index = 2
