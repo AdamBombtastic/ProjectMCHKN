@@ -10,7 +10,7 @@ draw_set_font(tmp_fancy_font)
 
 draw_set_color(c_white)
 
-draw_text((room_width/2)-string_width("Lobby")/2,25,"Lobby")
+//draw_text((room_width/2)-string_width("Lobby")/2,25,"Lobby")
 
 //Draw player statuses
 
@@ -18,7 +18,7 @@ for (i=0; i < no_players; i++) {
     temp_plyr = plyr_list[| i]
     draw_set_alpha(0.5)
     
-    if (i == 0) {
+    if (i == current_player_turn) {
          draw_roundrect_colour(bottom_player_x + (i * next_player_status_width) + i*next_player_padding, 
                           bottom_player_y, 
                           bottom_player_x + ((i * next_player_status_width) + next_player_status_width) + i*next_player_padding, 

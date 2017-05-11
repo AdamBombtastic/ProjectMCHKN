@@ -5,6 +5,9 @@ Inititate GUI and Player Variables
 no_players = 4
 
 
+gamepads = ds_list_create()
+available_gamepads = ds_list_create()
+
 
 bottom_player_y = 608
 bottom_player_x = 150
@@ -68,7 +71,7 @@ plyr_colors[3] = c_yellow
 for (i = 0; i < no_players; i++) {
     temp = instance_create(spawn_point_x +  i*64,spawn_point_y,obj_temp_player);
     temp.plyr_color = plyr_colors[i]
-    
+    temp.plyr_id = i
    
     ds_list_add(temp.plyr_items,temp_item)
     ds_list_add(temp.plyr_items,temp_item2)
@@ -79,7 +82,7 @@ for (i = 0; i < no_players; i++) {
 }
 
 
-current_player_turn = 0 //First player
+current_player_turn = 0//First player
 current_player = ds_list_find_value(plyr_list,current_player_turn)
 current_player.is_turn = true
 ds_list_add(current_player.plyr_items,temp_item3)

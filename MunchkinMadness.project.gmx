@@ -16,7 +16,11 @@
     <sprite>sprites\tmp_shld</sprite>
     <sprite>sprites\tmp_curse</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\hub_tileset</background>
+    <background>background\hub_test</background>
+    <background>background\hub_tile_set_mirrored</background>
+  </backgrounds>
   <paths name="paths">
     <path>paths\path1</path>
   </paths>
@@ -34,6 +38,8 @@
       <script>scripts\draw_obj_healthbar.gml</script>
       <script>scripts\draw_target_healthbar.gml</script>
       <script>scripts\draw_target_manabar.gml</script>
+      <script>scripts\controller_detector.gml</script>
+      <script>scripts\input_handler.gml</script>
     </scripts>
     <scripts name="Monster">
       <script>scripts\control_monster.gml</script>
