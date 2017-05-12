@@ -143,10 +143,11 @@
 Temporary Hit Damage
 ***/
 
-if (!other.hit) {
+if (ds_list_find_index(other.hit,id) == -1 ) {
     is_hurt = true
     obj_health -= other.attack
-    other.hit = true
+    if (obj_health &lt; 0) obj_health = 0
+    ds_list_add(other.hit,id)
     
     
     

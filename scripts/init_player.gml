@@ -35,6 +35,7 @@ plyr_items = ds_list_create()
 is_turn = false
 is_party = false
 is_enemy = false
+is_viewing_items = false
 needs_update = false
 
 controller = -99// -99 = None, -1 = Keyboard, 0-3 = Gamepads

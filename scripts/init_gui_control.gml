@@ -10,19 +10,21 @@ available_gamepads = ds_list_create()
 
 
 bottom_player_y = 608
-bottom_player_x = 150
+bottom_player_x = 20
+
+
 
 
 outline_color = c_black
 fill_color = c_gray
 
 current_player_status_width = 300
-current_player_status_height = 200
+current_player_status_height = 400
 
-next_player_status_width = 200
-next_player_status_height = 200
+next_player_status_width = 285
+next_player_status_height = 400
 
-next_player_padding = 50
+next_player_padding = 25
 
 /**
 Temporary Item Control Structures
@@ -37,7 +39,7 @@ ds_map_add(temp_item,"type",0)
 
 temp_item2 = ds_map_create()
 
-ds_map_add(temp_item2,"name","Exalted Shield of The Kitten Slayer")
+ds_map_add(temp_item2,"name","Shield of The Kitten Slayer")
 ds_map_add(temp_item2,"dmg",1)
 ds_map_add(temp_item2,"type",1)
 
@@ -50,6 +52,11 @@ ds_map_add(temp_item3,"type",2)
 ds_list_add(item_list,temp_item)
 ds_list_add(item_list,temp_item2)
 ds_list_add(item_list,temp_item3)
+
+item_icons[0] = tmp_wpn
+item_icons[1] = tmp_shld
+item_icons[2] = tmp_curse
+
 
 /**
 
@@ -74,6 +81,8 @@ for (i = 0; i < no_players; i++) {
     temp.plyr_id = i
    
     ds_list_add(temp.plyr_items,temp_item)
+    ds_list_add(temp.plyr_items,temp_item2)
+    ds_list_add(temp.plyr_items,temp_item2)
     ds_list_add(temp.plyr_items,temp_item2)
     
     temp.needs_update = true

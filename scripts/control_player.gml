@@ -3,11 +3,17 @@ Player Update & Control Script
 
 *****/
 
-
+if (obj_health < 0) {
+    obj_health = 0
+}
 if (needs_update) {
     plyr_attack = player_calc_stats(self)
     needs_update = false
 }
+if (key_menu) {
+        //obj_gui.is_showing_item_gui = !obj_gui.is_showing_item_gui
+        is_viewing_items = !is_viewing_items
+    }
 if (is_turn) {
     
     if (!plyr_is_warping) {
@@ -74,9 +80,7 @@ if (is_turn) {
         }
        
     }
-    if (key_menu) {
-        obj_gui.is_showing_item_gui = !obj_gui.is_showing_item_gui
-    }
+    
     
     if (key_special) {
         if (!plyr_is_warping && obj_mana > 1) {

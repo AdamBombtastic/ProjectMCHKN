@@ -15,14 +15,24 @@ draw_set_color(c_white)
 //Draw player statuses
 
 for (i=0; i < no_players; i++) {
+    
+    temp_y_pos = bottom_player_y
+    
+    
     temp_plyr = plyr_list[| i]
+    
+    if (temp_plyr.is_viewing_items) {
+        temp_y_pos -= 300 //?
+    }
+    
+    
     draw_set_alpha(0.5)
     
     if (i == current_player_turn) {
          draw_roundrect_colour(bottom_player_x + (i * next_player_status_width) + i*next_player_padding, 
-                          bottom_player_y, 
+                          temp_y_pos, 
                           bottom_player_x + ((i * next_player_status_width) + next_player_status_width) + i*next_player_padding, 
-                          bottom_player_y + next_player_status_height,
+                          temp_y_pos + next_player_status_height,
                           c_yellow,
                           c_yellow,
                           false)
@@ -30,9 +40,9 @@ for (i=0; i < no_players; i++) {
     
     }
     draw_roundrect_colour(bottom_player_x + (i * next_player_status_width) + i*next_player_padding, 
-                          bottom_player_y, 
+                          temp_y_pos, 
                           bottom_player_x + ((i * next_player_status_width) + next_player_status_width) + i*next_player_padding, 
-                          bottom_player_y + next_player_status_height,
+                          temp_y_pos + next_player_status_height,
                           fill_color,
                           fill_color,
                           false)
@@ -40,36 +50,62 @@ for (i=0; i < no_players; i++) {
     
     draw_set_font(tmp_font)
     draw_text(50 + bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 10,
-                     bottom_player_y + 5,
+                     temp_y_pos + 5,
                      "Player " + string(i+1))
     draw_target_healthbar(temp_plyr, 
                           bottom_player_x + (i * next_player_status_width) + i*next_player_padding + string_width("HP: ") + 15,
-                          bottom_player_y + 10 + string_height("A"),
-                          145,
-                          18)
+                          temp_y_pos + 10 + string_height("A"),
+                          220,
+                          15)
      draw_target_manabar(temp_plyr, 
                           bottom_player_x + (i * next_player_status_width) + i*next_player_padding + string_width("HP: ") + 15,
-                          bottom_player_y + 10 + string_height("A")*2,
-                          145,
-                          18)             
+                          temp_y_pos + 10 + string_height("A")*2,
+                          220,
+                          15)             
                      
      draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 10,
-              bottom_player_y + 10 + string_height("A"),
+              temp_y_pos + 10 + string_height("A"),
               "HP: ")
      draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 10,
-              bottom_player_y + 10 + string_height("A")*2,
+              temp_y_pos + 10 + string_height("A")*2,
               "MP: ")
     draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 10,
-              bottom_player_y + 10 + string_height("A")*3,
+              temp_y_pos + 10 + string_height("A")*3,
               "LVL: " +string(temp_plyr.plyr_lvl))
     draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 10,
-              bottom_player_y + 10 + (string_height("A") * 4),
+              temp_y_pos + 10 + (string_height("A") * 4),
               "ATK: " +string(temp_plyr.plyr_attack))                
-                     
+    draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 10,
+              temp_y_pos + 10 + (string_height("A") * 5),
+              "=ITEMS=")       
+              
     
+
+    
+    for (j = 0; j < ds_list_size(temp_plyr.plyr_items); j++) {
+        item = ds_list_find_value(temp_plyr.plyr_items,j)
+        text = item[? "name"]
+        str_height = string_height("ATK")
+        draw_set_font(temp_font2)
+        draw_sprite(item_icons[item[? "type"]],0,bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 5,temp_y_pos + 10 + (str_height * (6+j))+6)
+        /*draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 30,
+                  temp_y_pos + 10 + (str_height * (6+j)+5),
+                  text + " " + string(item[? "dmg"]))
+        */
+        if (item[? "dmg"] > 0) {
+            draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 30,
+                  temp_y_pos + 10 + (str_height * (6+j)+5),
+                  text + " +" + string(item[? "dmg"]))
+        }
+        else {
+             draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 30,
+                  temp_y_pos + 10 + (str_height * (6+j)+5),
+                  text + " " + string(item[? "dmg"]))
+        }
+        
+    }
+
 }
-
-
 /*** 
 Current Player Items
 Full - View

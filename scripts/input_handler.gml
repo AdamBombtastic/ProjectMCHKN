@@ -42,7 +42,7 @@ for (i = 0; i < no_players; i++) {
         
         t_plyr.key_special = keyboard_check_pressed(vk_shift)
         
-        t_plyr.key_menu = keyboard_check(ord('I'))
+        t_plyr.key_menu = keyboard_check_pressed(ord('I'))
 
     }
     //Player using controller

@@ -49,6 +49,7 @@
   </scripts>
   <fonts name="fonts">
     <font>fonts\tmp_font</font>
+    <font>fonts\temp_font2</font>
     <font>fonts\tmp_fancy_font</font>
   </fonts>
   <objects name="objects">

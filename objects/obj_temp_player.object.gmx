@@ -111,6 +111,7 @@
             <kind>1</kind>
             <string>if (!other.is_dead &amp;&amp; !other.is_hurt &amp;&amp; !plyr_is_warping) {
     obj_health -= 0.1
+    if(obj_health &lt; 0) obj_health = 0
 }
 </string>
           </argument>
@@ -134,9 +135,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (other.owner != plyr_id &amp;&amp; !other.hit ) {
+            <string>if (other.owner != plyr_id &amp;&amp; ds_list_find_index(other.hit,id) == -1 ) {
     obj_health -= other.attack
-    other.hit = true
+    ds_list_add(other.hit,id)
+    if (obj_health &lt; 0) {
+    obj_health = 0
+}
 }
 </string>
           </argument>

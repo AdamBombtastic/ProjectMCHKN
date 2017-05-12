@@ -1,7 +1,9 @@
 /**
 Control Monster Script
 **/
-
+if (obj_health < 0) {
+    obj_health = 0
+}
 direction = random(360)
 speed = random(5)
 

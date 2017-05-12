@@ -29,7 +29,7 @@
 start_frame = 1 
 
 depth= -1
-hit = false
+hit = ds_list_create()
 attack = 1
 owner = -1
 </string>
