@@ -36,10 +36,14 @@ is_turn = false
 is_party = false
 is_enemy = false
 is_viewing_items = false
+is_in_gui = false
 needs_update = false
 
 controller = -99// -99 = None, -1 = Keyboard, 0-3 = Gamepads
 
+
+
+//Input Variables
 key_up = 0
 key_down = 0
 key_left = 0
@@ -48,4 +52,14 @@ key_right = 0
 key_attack = 0
 key_special = 0
 key_menu = 0
+
+//'Old' Input Variables
+last_key_up = 0
+last_key_down = 0
+last_key_left = 0
+last_key_right = 0
+
+last_key_attack = 0
+last_key_special = 0
+last_key_menu = 0
 

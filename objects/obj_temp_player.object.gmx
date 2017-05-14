@@ -113,6 +113,10 @@
     obj_health -= 0.1
     if(obj_health &lt; 0) obj_health = 0
 }
+else if (plyr_is_warping) {
+    other.obj_health -= .5
+    if (other.obj_health &lt; 0) other.obj_health = 0
+}
 </string>
           </argument>
         </arguments>
@@ -136,10 +140,12 @@
           <argument>
             <kind>1</kind>
             <string>if (other.owner != plyr_id &amp;&amp; ds_list_find_index(other.hit,id) == -1 ) {
+   //TODO: CHECK FOR PARTIES AND ENEMIES
     obj_health -= other.attack
     ds_list_add(other.hit,id)
     if (obj_health &lt; 0) {
     obj_health = 0
+    
 }
 }
 </string>

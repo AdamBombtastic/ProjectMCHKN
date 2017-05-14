@@ -30,6 +30,18 @@ for (i = 0; i < no_players; i++) {
     // Player is using keyboard
     if (t_plyr.controller == -1) {
         
+        t_plyr.last_key_up = t_plyr.key_up
+
+        t_plyr.last_key_down = t_plyr.key_down
+
+        t_plyr.last_key_left = t_plyr.key_left
+
+        t_plyr.last_key_right = t_plyr.key_right
+        
+        
+        
+        
+        
         t_plyr.key_up = keyboard_check(ord('W'))
 
         t_plyr.key_down= keyboard_check(ord('S'))
@@ -43,13 +55,25 @@ for (i = 0; i < no_players; i++) {
         t_plyr.key_special = keyboard_check_pressed(vk_shift)
         
         t_plyr.key_menu = keyboard_check_pressed(ord('I'))
+        
+        
+        
 
     }
     //Player using controller
  
     else if (t_plyr.controller >= 0 && ds_list_find_index(gamepads,t_plyr.controller) > -1 && gamepad_is_connected(t_plyr.controller)) {
         c_id = t_plyr.controller    
-    
+        
+        
+        t_plyr.last_key_up = t_plyr.key_up
+
+        t_plyr.last_key_down = t_plyr.key_down
+
+        t_plyr.last_key_left = t_plyr.key_left
+
+        t_plyr.last_key_right = t_plyr.key_right
+        
         if (gamepad_axis_value(c_id,gp_axislv) < 0) {
             t_plyr.key_up = 1    
         }

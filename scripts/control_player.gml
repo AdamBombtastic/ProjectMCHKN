@@ -14,7 +14,7 @@ if (key_menu) {
         //obj_gui.is_showing_item_gui = !obj_gui.is_showing_item_gui
         is_viewing_items = !is_viewing_items
     }
-if (is_turn) {
+if ((is_turn || is_party || is_enemy) && !is_viewing_items ) {
     
     if (!plyr_is_warping) {
     
@@ -53,7 +53,8 @@ if (is_turn) {
             speed = 0
         }
         else {
-        
+            part_emitter_region(obj_test_particle.FirstParticleSystem,obj_test_particle.first_emitter,x,x,y,y,ps_shape_line,ps_distr_invgaussian)
+            part_emitter_burst(obj_test_particle.FirstParticleSystem,obj_test_particle.first_emitter,obj_test_particle.first_particle,10)
             move_towards_point(plyr_warp_point_x,plyr_warp_point_y,30)
             obj_mana -= 1
         }
@@ -85,8 +86,8 @@ if (is_turn) {
     if (key_special) {
         if (!plyr_is_warping && obj_mana > 1) {
             plyr_is_warping = true
-            plyr_warp_point_x = x + ((-key_left + key_right)*100)
-            plyr_warp_point_y = y + ((-key_up + key_down)*100)
+            plyr_warp_point_x = x + ((-key_left + key_right)*192)
+            plyr_warp_point_y = y + ((-key_up + key_down)*192)
             
             if (plyr_warp_point_x < x) {
                 plyr_direction = DIR_LEFT

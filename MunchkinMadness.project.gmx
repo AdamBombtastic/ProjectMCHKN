@@ -12,9 +12,12 @@
     <sprite>sprites\temp_bullet</sprite>
     <sprite>sprites\spr_tmp_shop</sprite>
     <sprite>sprites\spr_tmp_boundary</sprite>
-    <sprite>sprites\tmp_wpn</sprite>
+    <sprite>sprites\tmp_sword</sprite>
     <sprite>sprites\tmp_shld</sprite>
     <sprite>sprites\tmp_curse</sprite>
+    <sprite>sprites\tmp_a_button</sprite>
+    <sprite>sprites\tmp_b_button</sprite>
+    <sprite>sprites\spr_item_none</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\hub_tileset</background>
@@ -32,7 +35,6 @@
       <script>scripts\player_calc_stats.gml</script>
     </scripts>
     <scripts name="Control">
-      <script>scripts\gui_show_player_item.gml</script>
       <script>scripts\init_gui_control.gml</script>
       <script>scripts\draw_gui.gml</script>
       <script>scripts\draw_obj_healthbar.gml</script>
@@ -40,6 +42,9 @@
       <script>scripts\draw_target_manabar.gml</script>
       <script>scripts\controller_detector.gml</script>
       <script>scripts\input_handler.gml</script>
+      <script>scripts\gui_show_player_item.gml</script>
+      <script>scripts\gui_input_control.gml</script>
+      <script>scripts\gui_confirm_junk_item_dialog.gml</script>
     </scripts>
     <scripts name="Monster">
       <script>scripts\control_monster.gml</script>
@@ -59,6 +64,7 @@
     <object>objects\obj_temp_bullet</object>
     <object>objects\obj_gui</object>
     <object>objects\obj_tmp_shop</object>
+    <object>objects\obj_test_particle</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\HUB</room>
