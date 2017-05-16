@@ -27,7 +27,7 @@ for (i=0; i < no_players; i++) {
     }
     
     
-    draw_set_alpha(0.5)
+    draw_set_alpha(0.6)
     
     /* Draw the main status indicators. Check if they are in a party, an enemy, or the current player */
     
@@ -79,10 +79,11 @@ for (i=0; i < no_players; i++) {
     
     /*** This section pupulates the status with Health, Mana, Level, and Attack stats. **/
     //TODO: Add IN Party and Enemy Status Indicators
-    draw_set_font(tmp_font)
+    draw_set_font(tmp_fancy_font)
     draw_text(50 + bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 10,
-                     temp_y_pos + 5,
+                     temp_y_pos + 3,
                      "Player " + string(i+1))
+    draw_set_font(tmp_font)
     draw_target_healthbar(temp_plyr, 
                           bottom_player_x + (i * next_player_status_width) + i*next_player_padding + string_width("HP: ") + 15,
                           temp_y_pos + 10 + string_height("A"),
@@ -97,12 +98,16 @@ for (i=0; i < no_players; i++) {
      draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 10,
               temp_y_pos + 10 + string_height("A"),
               "HP: ")
+              
      draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 10,
               temp_y_pos + 10 + string_height("A")*2,
               "MP: ")
     draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 10,
               temp_y_pos + 10 + string_height("A")*3,
               "LVL: " +string(temp_plyr.plyr_lvl))
+    draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 120,
+              temp_y_pos + 10 + string_height("A")*3,
+              "Gold: " +string(temp_plyr.plyr_gold))
     draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 10,
               temp_y_pos + 10 + (string_height("A") * 4),
               "ATK: " +string(temp_plyr.plyr_attack))                
@@ -118,7 +123,7 @@ for (i=0; i < no_players; i++) {
         text = item[? "name"]
         str_height = string_height("ATK")
         draw_set_font(temp_font2)
-        if (player_item_index[temp_plyr.plyr_id] == j) {
+        if (player_item_index[temp_plyr.plyr_id] == j && temp_plyr.id == current_player.id) {
             draw_set_alpha(0.2)
             draw_rectangle_color(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 5,
                                  temp_y_pos + 10 + (str_height * (6+j)+5),
@@ -131,6 +136,9 @@ for (i=0; i < no_players; i++) {
                                  false)
             draw_set_alpha(1)
         }
+        
+        /*Draw Item Infoormation! */
+        
         draw_sprite(item_icons[item[? "type"]],0,bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 5,temp_y_pos + 10 + (str_height * (6+j))+6)
         /*draw_text(bottom_player_x + (i * next_player_status_width) + i*next_player_padding + 30,
                   temp_y_pos + 10 + (str_height * (6+j)+5),
@@ -179,7 +187,13 @@ if (is_showing_junk_gui) {
     script_execute(gui_confirm_junk_item_dialog,current_player.plyr_id,player_item_index[current_player.plyr_id])
 
 }
+/*
+Called in the Shop Object
+if (is_showing_shop_gui) {
 
+    script_execute(gui_show_player_shop)
+}
+*/
 
 
 

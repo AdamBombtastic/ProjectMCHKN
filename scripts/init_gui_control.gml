@@ -43,6 +43,7 @@ ds_map_add(item_none,"dmg",0)
 ds_map_add(item_none,"type",0)
 ds_map_add(item_none,"grade",0)
 ds_map_add(item_none,"desc","<____Empty____>")
+ds_map_add(item_none,"value",0)
 
 temp_item0 = ds_map_create()
 
@@ -51,6 +52,7 @@ ds_map_add(temp_item0,"dmg",1)
 ds_map_add(temp_item0,"type",1)
 ds_map_add(temp_item0,"grade",1)
 ds_map_add(temp_item0,"desc","A pair of wimpy fists, but it's better than having no hands.")
+ds_map_add(temp_item0,"value","10")
 
 temp_item = ds_map_create()
 
@@ -59,6 +61,7 @@ ds_map_add(temp_item,"dmg",5)
 ds_map_add(temp_item,"type",1)
 ds_map_add(temp_item,"grade",5)
 ds_map_add(temp_item,"desc","tHe MoSt 1337 swArD in ExIsTeNcE.")
+ds_map_add(temp_item,"value",320)
 
 temp_item2 = ds_map_create()
 
@@ -67,6 +70,7 @@ ds_map_add(temp_item2,"dmg",1)
 ds_map_add(temp_item2,"type",2)
 ds_map_add(temp_item2,"grade",2)
 ds_map_add(temp_item2,"desc","Some people can still hear the feeble meows calling for help.")
+ds_map_add(temp_item2,"value",20)
 
 temp_item3 = ds_map_create()
 
@@ -75,16 +79,28 @@ ds_map_add(temp_item3,"dmg",-4)
 ds_map_add(temp_item3,"type",3)
 ds_map_add(temp_item3,"grade",4)
 ds_map_add(temp_item3,"desc","Some ninnymuggins stuck this to your shoe. Curses!")
+ds_map_add(temp_item3,"value",0)
+
+temp_item4 = ds_map_create()
+
+ds_map_add(temp_item4,"name","Small Health Potion")
+ds_map_add(temp_item4,"dmg",10)
+ds_map_add(temp_item4,"type",4)
+ds_map_add(temp_item4,"grade",2)
+ds_map_add(temp_item4,"desc","Drink this and SOME of the pain goes away.")
+ds_map_add(temp_item4,"value",100)
 
 ds_list_add(item_list,temp_item0)
 ds_list_add(item_list,temp_item)
 ds_list_add(item_list,temp_item2)
 ds_list_add(item_list,temp_item3)
+ds_list_add(item_list,temp_item4)
 
 item_icons[0] = spr_item_none
 item_icons[1] = tmp_sword
 item_icons[2] = tmp_shld
 item_icons[3] = tmp_curse
+item_icons[4] = tmp_hp_pot
 
 item_grades[0] = "?"
 item_grades[1] = "F"
@@ -98,6 +114,7 @@ item_types[0] = "None"
 item_types[1] = "Weapon"
 item_types[2] = "Shield"
 item_types[3] = "Curse"
+item_types[4] = "Consumable"
 
 
 /**
@@ -146,4 +163,5 @@ current_player.is_turn = true
 
 is_showing_item_gui = false
 is_showing_junk_gui = false
+is_showing_shop_gui = false
 

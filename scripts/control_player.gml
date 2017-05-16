@@ -10,11 +10,11 @@ if (needs_update) {
     plyr_attack = player_calc_stats(self)
     needs_update = false
 }
-if (key_menu) {
+if (key_menu && !(in_shop && is_in_gui)) {
         //obj_gui.is_showing_item_gui = !obj_gui.is_showing_item_gui
         is_viewing_items = !is_viewing_items
     }
-if ((is_turn || is_party || is_enemy) && !is_viewing_items ) {
+if ((is_turn || is_party || is_enemy) && !is_viewing_items && !is_in_gui) {
     
     if (!plyr_is_warping) {
     
@@ -60,7 +60,7 @@ if ((is_turn || is_party || is_enemy) && !is_viewing_items ) {
         }
     
     }
-    if (key_attack) {
+    if (key_attack && obj_mana >= 3 && !in_shop) {
         
         
         if (plyr_direction == DIR_RIGHT) {
@@ -79,8 +79,10 @@ if ((is_turn || is_party || is_enemy) && !is_viewing_items ) {
             
             }
         }
+        obj_mana -=3
        
     }
+    
     
     
     if (key_special) {

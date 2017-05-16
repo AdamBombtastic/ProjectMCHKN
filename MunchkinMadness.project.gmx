@@ -18,6 +18,8 @@
     <sprite>sprites\tmp_a_button</sprite>
     <sprite>sprites\tmp_b_button</sprite>
     <sprite>sprites\spr_item_none</sprite>
+    <sprite>sprites\tmp_gold</sprite>
+    <sprite>sprites\tmp_hp_pot</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\hub_tileset</background>
@@ -38,6 +40,7 @@
       <script>scripts\init_gui_control.gml</script>
       <script>scripts\draw_gui.gml</script>
       <script>scripts\draw_obj_healthbar.gml</script>
+      <script>scripts\draw_obj_delay_healthbar.gml</script>
       <script>scripts\draw_target_healthbar.gml</script>
       <script>scripts\draw_target_manabar.gml</script>
       <script>scripts\controller_detector.gml</script>
@@ -50,6 +53,10 @@
       <script>scripts\control_monster.gml</script>
       <script>scripts\ani_monster.gml</script>
       <script>scripts\init_monster.gml</script>
+    </scripts>
+    <scripts name="Shop">
+      <script>scripts\gui_show_player_shop.gml</script>
+      <script>scripts\init_shop.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">

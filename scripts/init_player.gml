@@ -14,10 +14,13 @@ obj_mana_regen = 0.1
 obj_mana = 10
 obj_max_mana = obj_mana
 
+
 plyr_speed = 3.5
 
 plyr_attack = 1
 plyr_lvl = 1
+plyr_gold = 0
+
 
 plyr_is_warping = false
 plyr_warp_point_x = false
@@ -37,6 +40,7 @@ is_party = false
 is_enemy = false
 is_viewing_items = false
 is_in_gui = false
+in_shop = false
 needs_update = false
 
 controller = -99// -99 = None, -1 = Keyboard, 0-3 = Gamepads

@@ -113,9 +113,16 @@
     obj_health -= 0.1
     if(obj_health &lt; 0) obj_health = 0
 }
-else if (plyr_is_warping) {
-    other.obj_health -= .5
-    if (other.obj_health &lt; 0) other.obj_health = 0
+else if (plyr_is_warping &amp;&amp; !other.is_dead) {
+    other.obj_health -= plyr_attack/4
+    other.is_hurt = true
+    if (other.obj_health &lt;= 0) {
+        other.obj_health = 0
+        other.killer = plyr_id
+        other.is_dead = true
+        
+    }
+    
 }
 </string>
           </argument>

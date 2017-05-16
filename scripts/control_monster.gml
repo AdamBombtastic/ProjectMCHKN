@@ -12,6 +12,22 @@ if (random(10) > 5) {
     
     //temp.direction = direction
 }
+if (is_dead && killer != -1) {
+    
+    
+    t_plyr = obj_gui.plyr_list[| killer]
+    path_end()
+    t_plyr.plyr_lvl += 1
+    t_plyr.needs_update = true
+    t_plyr.plyr_gold += floor(random(100))
+    effect_create_above(ef_star, t_plyr.x, t_plyr.y-32, 1.8, merge_color(c_white,c_yellow,0.5))
+    effect_create_above(ef_star, t_plyr.x-16, t_plyr.y-32, 1.8, merge_color(c_white,c_yellow,0.5))
+    effect_create_above(ef_star, t_plyr.x+16, t_plyr.y-32, 1.8, merge_color(c_white,c_yellow,0.5))
+    effect_create_above(ef_firework, other.x, other.y, 0.5, c_white);
+    
+    killer = -1
+
+}
 
         /*** DEBUG CHANGE PLAYERS   ****/
         if (keyboard_check_pressed(vk_tab)) {

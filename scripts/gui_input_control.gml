@@ -11,7 +11,7 @@ for (i = 0; i < no_players; i++) {
     t_plyr = plyr_list[| i]
     //If they are interating with gui, pipe the input to this object. . . 
     //if (t_plyr.is_in_gui) {
-        if (t_plyr.is_viewing_items) {
+        if (t_plyr.is_viewing_items && current_player.id == t_plyr.id) {
             if (!is_showing_junk_gui) {
                 if (t_plyr.key_up == 1 && t_plyr.last_key_up != 1) {
                     player_item_index[t_plyr.plyr_id] -= 1
@@ -51,6 +51,61 @@ for (i = 0; i < no_players; i++) {
         if (!t_plyr.is_viewing_items && t_plyr.plyr_id == current_player.plyr_id) {
             is_showing_item_gui = false
             is_showing_junk_gui = false
+        }
+        
+        // Shop Input Control
+        if (t_plyr.in_shop) {
+        
+            if (!is_showing_shop_gui) {
+                if (t_plyr.key_attack && t_plyr.plyr_id == current_player.plyr_id  ) {
+                    is_showing_shop_gui = true
+                    t_plyr.is_in_gui = true
+                    t_plyr.in_shop = true
+                    t_plyr.is_viewing_items = false
+                }
+            }
+            else if (is_showing_shop_gui && t_plyr.plyr_id == current_player.plyr_id) {
+                 if (t_plyr.key_special   ) {
+                    
+                    if (obj_tmp_shop.shop_h_index == 0) {
+                        is_showing_shop_gui = false
+                        t_plyr.is_in_gui = false
+                        t_plyr.in_shop = false
+                    }
+                    else {
+                         obj_tmp_shop.shop_h_index -= 1
+                         obj_tmp_shop.shop_index = obj_tmp_shop.shop_v_index
+                         obj_tmp_shop.shop_v_index = 0
+                        
+                    }
+                }
+                else if (t_plyr.key_attack)
+                {
+                    if (obj_tmp_shop.shop_h_index == 0) {
+                        obj_tmp_shop.shop_h_index += 1
+                        obj_tmp_shop.shop_v_index = obj_tmp_shop.shop_index
+                        obj_tmp_shop.shop_index = 0
+                    }
+                    
+                
+                }
+                 if (t_plyr.key_up == 1 && t_plyr.last_key_up != 1) {
+                    obj_tmp_shop.shop_index -= 1
+    
+                }
+                else if (t_plyr.key_down == 1 && t_plyr.last_key_down != 1) {
+                    obj_tmp_shop.shop_index += 1
+    
+                }
+                 if (obj_tmp_shop.shop_index < 0){
+                    obj_tmp_shop.shop_index = 0
+                 }
+                else if (obj_tmp_shop.shop_index >= obj_tmp_shop.shop_options_length) {
+                    obj_tmp_shop.shop_index = obj_tmp_shop.shop_options_length-1
+                }
+            
+            }
+            
         } 
     //}
     
