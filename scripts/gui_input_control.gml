@@ -54,7 +54,7 @@ for (i = 0; i < no_players; i++) {
         }
         
         // Shop Input Control
-        if (t_plyr.in_shop) {
+        if (t_plyr.in_shop && !t_plyr.is_viewing_items) {
         
             if (!is_showing_shop_gui) {
                 if (t_plyr.key_attack && t_plyr.plyr_id == current_player.plyr_id  ) {
@@ -65,6 +65,7 @@ for (i = 0; i < no_players; i++) {
                 }
             }
             else if (is_showing_shop_gui && t_plyr.plyr_id == current_player.plyr_id) {
+                if (!obj_tmp_shop.is_showing_confirm) {
                  if (t_plyr.key_special   ) {
                     
                     if (obj_tmp_shop.shop_h_index == 0) {
@@ -86,6 +87,9 @@ for (i = 0; i < no_players; i++) {
                         obj_tmp_shop.shop_v_index = obj_tmp_shop.shop_index
                         obj_tmp_shop.shop_index = 0
                     }
+                    else if (obj_tmp_shop.shop_h_index > 0) {
+                            obj_tmp_shop.is_showing_confirm = true
+                    }
                     
                 
                 }
@@ -105,7 +109,36 @@ for (i = 0; i < no_players; i++) {
                 }
             
             }
+            else if (obj_tmp_shop.is_showing_confirm) {
+                 if (t_plyr.key_special   ) {
+                    obj_tmp_shop.is_showing_confirm = false
+                }
+                else if (t_plyr.key_attack)
+                {
+                    //BUYING AN ITEM
+                    if (obj_tmp_shop.shop_v_index == 0) {
+                        b_item = obj_tmp_shop.shop_items[| obj_tmp_shop.shop_index]
+                        if (t_plyr.plyr_gold >=  b_item[? "value"]) {
+                            if (player_add_item(t_plyr.plyr_id,b_item))
+                            {   
+                                t_plyr.plyr_gold -=  b_item[? "value"]
+                                obj_tmp_shop.is_showing_confirm = false  
+                            }                    
+                        }
+                    }
+                    else if (obj_tmp_shop.shop_v_index == 1) {
+                        b_item = t_plyr.plyr_items[| obj_tmp_shop.shop_index]
+                        t_plyr.plyr_gold += b_item[? "value"]
+                        ds_list_replace(t_plyr.plyr_items,obj_tmp_shop.shop_index,obj_gui.item_none)
+                        t_plyr.plyr_attack = player_calc_stats(t_plyr)
+                        obj_tmp_shop.is_showing_confirm = false 
+                        
+                    }
+                }
             
+            
+            }
+        }
         } 
     //}
     

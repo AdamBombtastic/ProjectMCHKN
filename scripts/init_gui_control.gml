@@ -52,7 +52,7 @@ ds_map_add(temp_item0,"dmg",1)
 ds_map_add(temp_item0,"type",1)
 ds_map_add(temp_item0,"grade",1)
 ds_map_add(temp_item0,"desc","A pair of wimpy fists, but it's better than having no hands.")
-ds_map_add(temp_item0,"value","10")
+ds_map_add(temp_item0,"value",10)
 
 temp_item = ds_map_create()
 

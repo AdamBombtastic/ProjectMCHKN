@@ -15,7 +15,7 @@ panel_height = (room_height/2)-20
 panel_start_x =  10 + room_width/4 
 panel_start_y = room_height/2 - panel_height/2
 
-panel_color = merge_color(c_olive,c_maroon,0.3)
+
 //t_current_item = plyr_target.plyr_items[| item_index]
 
 draw_set_alpha(0.75)
@@ -67,11 +67,11 @@ else if (shop_h_index > 0) {
     if (shop_v_index == 0) {
         shop_options_length = ds_list_size(shop_items)
         draw_text((panel_start_x+20),panel_start_y+string_width("Shop")+120+(0*string_height("SHOP"))+12,"=== ITEM ===")
-        draw_text((panel_start_x+225),panel_start_y+string_width("Shop")+120+(0*string_height("SHOP"))+12,"=== COST ===")
+        draw_text((panel_start_x+245),panel_start_y+string_width("Shop")+120+(0*string_height("SHOP"))+12,"=== COST ===")
         for (i = 0; i < ds_list_size(shop_items); i++) {
             tmp_s_item = shop_items[| i]
             draw_text((panel_start_x+20),panel_start_y+string_width("Shop")+120+((1+i)*string_height("SHOP"))+12,tmp_s_item[? "name"])
-            draw_text((panel_start_x+225),panel_start_y+string_width("Shop")+120+((1+i)*string_height("SHOP"))+12,tmp_s_item[? "value"])
+            draw_text((panel_start_x+245),panel_start_y+string_width("Shop")+120+((1+i)*string_height("SHOP"))+12,tmp_s_item[? "value"])
             if (shop_index == i) {
                 draw_set_alpha(0.3)
                 draw_rectangle_colour((panel_start_x+15),panel_start_y+string_width("Shop")+120+((1+i)*string_height("SHOP"))+12,
@@ -103,9 +103,11 @@ else if (shop_h_index > 0) {
     else if (shop_v_index == 1) {
         shop_options_length = ds_list_size(plyr_target.plyr_items)
         draw_text((panel_start_x+20),panel_start_y+string_width("Shop")+120+(0*string_height("SHOP"))+12,"=== SELL ===")
+         draw_text((panel_start_x+245),panel_start_y+string_width("Shop")+120+(0*string_height("SHOP"))+12,"=== VALUE ===")
         for (i = 0; i < ds_list_size(plyr_target.plyr_items); i++) {
             tmp_s_item = plyr_target.plyr_items[| i]
-            draw_text((panel_start_x+20),panel_start_y+string_width("Shop")+120+((1+i)*string_height("SHOP"))+12,tmp_s_item[? "name"] + " Value: " + string(tmp_s_item[? "value"]))
+            draw_text((panel_start_x+20),panel_start_y+string_width("Shop")+120+((1+i)*string_height("SHOP"))+12,tmp_s_item[? "name"])
+            draw_text((panel_start_x+245),panel_start_y+string_width("Shop")+120+((1+i)*string_height("SHOP"))+12,tmp_s_item[? "value"])
             if (shop_index == i) {
                 draw_set_alpha(0.3)
                 draw_rectangle_colour((panel_start_x+15),panel_start_y+string_width("Shop")+120+((1+i)*string_height("SHOP"))+12,
@@ -171,7 +173,9 @@ else if (shop_h_index > 0) {
 
 
 }
-
+if (is_showing_confirm) {
+    script_execute(gui_confirm_dialog,"Are you sure?",panel_start_x+320,panel_start_y+220)
+}
 
 /*
 draw_set_font(tmp_fancy_font)

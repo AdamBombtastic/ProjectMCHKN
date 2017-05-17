@@ -87,9 +87,13 @@ if ((is_turn || is_party || is_enemy) && !is_viewing_items && !is_in_gui) {
     
     if (key_special) {
         if (!plyr_is_warping && obj_mana > 1) {
-            plyr_is_warping = true
+            
             plyr_warp_point_x = x + ((-key_left + key_right)*192)
             plyr_warp_point_y = y + ((-key_up + key_down)*192)
+            
+            if (plyr_warp_point_x != x || plyr_warp_point_y != y) {
+                plyr_is_warping = true
+            }
             
             if (plyr_warp_point_x < x) {
                 plyr_direction = DIR_LEFT

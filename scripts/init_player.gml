@@ -19,7 +19,7 @@ plyr_speed = 3.5
 
 plyr_attack = 1
 plyr_lvl = 1
-plyr_gold = 0
+plyr_gold = 101
 
 
 plyr_is_warping = false
