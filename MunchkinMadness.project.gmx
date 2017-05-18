@@ -20,7 +20,7 @@
     <sprite>sprites\spr_item_none</sprite>
     <sprite>sprites\tmp_gold</sprite>
     <sprite>sprites\tmp_hp_pot</sprite>
-    <sprite>sprites\sprite14</sprite>
+    <sprite>sprites\tmp_shop_face</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\hub_tileset</background>
@@ -50,6 +50,8 @@
       <script>scripts\gui_show_player_item.gml</script>
       <script>scripts\gui_input_control.gml</script>
       <script>scripts\gui_confirm_junk_item_dialog.gml</script>
+      <script>scripts\get_item_copy_id.gml</script>
+      <script>scripts\get_item_copy.gml</script>
     </scripts>
     <scripts name="Monster">
       <script>scripts\control_monster.gml</script>
@@ -60,6 +62,9 @@
       <script>scripts\gui_show_player_shop.gml</script>
       <script>scripts\init_shop.gml</script>
       <script>scripts\gui_confirm_dialog.gml</script>
+      <script>scripts\shop_sell_item.gml</script>
+      <script>scripts\shop_buy_item.gml</script>
+      <script>scripts\create_random_upgrade.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">

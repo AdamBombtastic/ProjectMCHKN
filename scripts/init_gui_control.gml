@@ -44,6 +44,7 @@ ds_map_add(item_none,"type",0)
 ds_map_add(item_none,"grade",0)
 ds_map_add(item_none,"desc","<____Empty____>")
 ds_map_add(item_none,"value",0)
+ds_map_add(item_none,"amount",0)
 
 temp_item0 = ds_map_create()
 
@@ -53,6 +54,7 @@ ds_map_add(temp_item0,"type",1)
 ds_map_add(temp_item0,"grade",1)
 ds_map_add(temp_item0,"desc","A pair of wimpy fists, but it's better than having no hands.")
 ds_map_add(temp_item0,"value",10)
+ds_map_add(temp_item0,"amount",1)
 
 temp_item = ds_map_create()
 
@@ -62,6 +64,7 @@ ds_map_add(temp_item,"type",1)
 ds_map_add(temp_item,"grade",5)
 ds_map_add(temp_item,"desc","tHe MoSt 1337 swArD in ExIsTeNcE.")
 ds_map_add(temp_item,"value",320)
+ds_map_add(temp_item,"amount",1)
 
 temp_item2 = ds_map_create()
 
@@ -71,6 +74,7 @@ ds_map_add(temp_item2,"type",2)
 ds_map_add(temp_item2,"grade",2)
 ds_map_add(temp_item2,"desc","Some people can still hear the feeble meows calling for help.")
 ds_map_add(temp_item2,"value",20)
+ds_map_add(temp_item2,"amount",1)
 
 temp_item3 = ds_map_create()
 
@@ -80,6 +84,7 @@ ds_map_add(temp_item3,"type",3)
 ds_map_add(temp_item3,"grade",4)
 ds_map_add(temp_item3,"desc","Some ninnymuggins stuck this to your shoe. Curses!")
 ds_map_add(temp_item3,"value",0)
+ds_map_add(temp_item3,"amount",1)
 
 temp_item4 = ds_map_create()
 
@@ -89,6 +94,7 @@ ds_map_add(temp_item4,"type",4)
 ds_map_add(temp_item4,"grade",2)
 ds_map_add(temp_item4,"desc","Drink this and SOME of the pain goes away.")
 ds_map_add(temp_item4,"value",100)
+ds_map_add(temp_item4,"amount",1)
 
 ds_list_add(item_list,temp_item0)
 ds_list_add(item_list,temp_item)
@@ -139,11 +145,12 @@ for (i = 0; i < no_players; i++) {
     temp.plyr_color = plyr_colors[i]
     temp.plyr_id = i
    
-    ds_list_add(temp.plyr_items,temp_item0)
-    ds_list_add(temp.plyr_items,temp_item3)
-    ds_list_add(temp.plyr_items,temp_item)
-    ds_list_add(temp.plyr_items,temp_item2)
-    ds_list_add(temp.plyr_items,item_none)
+    for (j = 0; j < 5; j++) {
+        c_item_m = ds_map_create()
+        ds_map_copy(c_item_m,item_none)
+        
+        ds_list_add(temp.plyr_items,c_item_m)
+    }
     //ds_list_add(temp.plyr_items,temp_item2)
     
     temp.needs_update = true

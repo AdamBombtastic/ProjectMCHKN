@@ -44,6 +44,24 @@ draw_text((panel_start_x+(panel_width)/2) - string_width("Shop")/2,panel_start_y
 
 if (shop_h_index == 0) {
     shop_options_length = array_length_1d(shop_options)
+    
+    
+    draw_sprite_ext(tmp_shop_face,face_image,panel_start_x+25,panel_start_y+90-32,1.5,1.5,0,c_white,1)
+    
+    if (current_time - last_time > random(500)+300) {
+        face_image += 1
+        if (face_image > face_image_end) face_image = 0
+        last_time = current_time
+    }
+    draw_set_font(temp_font2)
+    draw_roundrect_colour(panel_start_x+120,panel_start_y+80-32,panel_start_x+120 + string_width(shop_sayings[current_shop_saying]) + 10,panel_start_y+80-32 + string_height("@")*2 + 2,c_white,c_white,false)
+    draw_roundrect_colour(panel_start_x+120,panel_start_y+80-32,panel_start_x+120 + string_width(shop_sayings[current_shop_saying]) + 10,panel_start_y+80-32 + string_height("@")*2 + 2,c_black,c_black,true)
+    
+    draw_set_color(c_black)
+    
+    draw_text(panel_start_x+125,panel_start_y+85-32,shop_sayings[current_shop_saying])
+    draw_set_color(c_white)
+    draw_set_font(tmp_fancy_font)
     for (i = 0; i < shop_options_length; i++) {
         draw_text((panel_start_x+20),panel_start_y+string_width("Shop")+120+(i*string_height("SHOP"))+12,shop_options[i])
         if (shop_index == i) {
@@ -58,6 +76,7 @@ if (shop_h_index == 0) {
             draw_set_alpha(1)
         }
     }
+    
 }
 else if (shop_h_index > 0) {
     
@@ -67,11 +86,11 @@ else if (shop_h_index > 0) {
     if (shop_v_index == 0) {
         shop_options_length = ds_list_size(shop_items)
         draw_text((panel_start_x+20),panel_start_y+string_width("Shop")+120+(0*string_height("SHOP"))+12,"=== ITEM ===")
-        draw_text((panel_start_x+245),panel_start_y+string_width("Shop")+120+(0*string_height("SHOP"))+12,"=== COST ===")
+        draw_text((panel_start_x+265),panel_start_y+string_width("Shop")+120+(0*string_height("SHOP"))+12,"=== COST ===")
         for (i = 0; i < ds_list_size(shop_items); i++) {
             tmp_s_item = shop_items[| i]
-            draw_text((panel_start_x+20),panel_start_y+string_width("Shop")+120+((1+i)*string_height("SHOP"))+12,tmp_s_item[? "name"])
-            draw_text((panel_start_x+245),panel_start_y+string_width("Shop")+120+((1+i)*string_height("SHOP"))+12,tmp_s_item[? "value"])
+            draw_text((panel_start_x+20),panel_start_y+string_width("Shop")+120+((1+i)*string_height("SHOP"))+12,tmp_s_item[? "name"] + " x" + string(tmp_s_item[? "amount"]))
+            draw_text((panel_start_x+265),panel_start_y+string_width("Shop")+120+((1+i)*string_height("SHOP"))+12,tmp_s_item[? "value"])
             if (shop_index == i) {
                 draw_set_alpha(0.3)
                 draw_rectangle_colour((panel_start_x+15),panel_start_y+string_width("Shop")+120+((1+i)*string_height("SHOP"))+12,
@@ -84,7 +103,10 @@ else if (shop_h_index > 0) {
                 draw_set_alpha(1)
             }
         }
-        t_current_item = shop_items[| shop_index]
+        if (shop_index > ds_list_size(shop_items)-1){
+            shop_index = ds_list_size(shop_items)-1
+         }
+         t_current_item = shop_items[| shop_index]
         draw_set_font(tmp_font)
         draw_sprite_ext(obj_gui.item_icons[t_current_item[? "type"]],0,panel_start_x+25,panel_start_y+90-32,4,4,0,c_white,1)
         draw_rectangle_colour(panel_start_x+20,panel_start_y+90-42,panel_start_x+30+74,panel_start_y+90+42,c_white,c_white,c_white,c_white,true)
@@ -155,17 +177,34 @@ else if (shop_h_index > 0) {
         
         
         t_current_item = plyr_target.plyr_items[| shop_index]
+        
+        //Current Item
         draw_set_font(tmp_font)
         draw_sprite_ext(obj_gui.item_icons[t_current_item[? "type"]],0,panel_start_x+24,panel_start_y+90-32,4,4,0,c_white,1)
         draw_rectangle_colour(panel_start_x+20,panel_start_y+90-42,panel_start_x+30+74,panel_start_y+90+42,c_white,c_white,c_white,c_white,true)
         
         draw_set_font(temp_font2)
-        draw_text(panel_start_x+115,panel_start_y+80-32,"Name: " + t_current_item[? "name"])
+        //draw_text(panel_start_x+115,panel_start_y+80-32,"Name: " + t_current_item[? "name"])
         draw_text(panel_start_x+115,panel_start_y+80-16,"Type: " + obj_gui.item_types[t_current_item[? "type"]])
         draw_text(panel_start_x+115,panel_start_y+80,"ATK: " + string(t_current_item[? "dmg"]))
         draw_text(panel_start_x+115,panel_start_y+80+16,"Grade: " + obj_gui.item_grades[t_current_item[? "grade"]])
         draw_text(panel_start_x+115,panel_start_y+80+32,"Value: " + string(t_current_item[? "value"]))
-        draw_text(panel_start_x+5,panel_start_y+80+58,'"' + t_current_item[? "desc"] + '"')
+        
+        //Upgrade Item
+        draw_set_font(tmp_font)
+        draw_sprite_ext(obj_gui.item_icons[t_current_item[? "type"]],0,panel_start_x+324,panel_start_y+90-32,4,4,0,c_lime,1)
+        draw_rectangle_colour(panel_start_x+320,panel_start_y+90-42,panel_start_x+330+74,panel_start_y+90+42,c_white,c_white,c_white,c_white,true)
+        
+        draw_set_font(temp_font2)
+        
+        
+        draw_text(panel_start_x+415,panel_start_y+80-16,"Type: " + obj_gui.item_types[t_current_item[? "type"]])
+        draw_set_color(c_lime)
+        draw_text(panel_start_x+415,panel_start_y+80-32,"Name: ???")
+        draw_text(panel_start_x+415,panel_start_y+80,"ATK: " + string(t_current_item[? "dmg"]) + " + ???")
+        draw_text(panel_start_x+415,panel_start_y+80+16,"Grade: ???" )
+        draw_text(panel_start_x+415,panel_start_y+80+32,"Value: ???" )
+        draw_set_color(c_white)
     }
 
 

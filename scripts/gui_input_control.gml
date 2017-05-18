@@ -62,6 +62,7 @@ for (i = 0; i < no_players; i++) {
                     t_plyr.is_in_gui = true
                     t_plyr.in_shop = true
                     t_plyr.is_viewing_items = false
+                    obj_tmp_shop.current_shop_saying = floor(random(array_length_1d(obj_tmp_shop.shop_sayings)-1))
                 }
             }
             else if (is_showing_shop_gui && t_plyr.plyr_id == current_player.plyr_id) {
@@ -122,17 +123,25 @@ for (i = 0; i < no_players; i++) {
                             if (player_add_item(t_plyr.plyr_id,b_item))
                             {   
                                 t_plyr.plyr_gold -=  b_item[? "value"]
-                                obj_tmp_shop.is_showing_confirm = false  
+                                obj_tmp_shop.is_showing_confirm = false
+                                shop_sell_item(obj_tmp_shop.shop_index)
                             }                    
                         }
                     }
+                    //Selling an ITEM
                     else if (obj_tmp_shop.shop_v_index == 1) {
                         b_item = t_plyr.plyr_items[| obj_tmp_shop.shop_index]
                         t_plyr.plyr_gold += b_item[? "value"]
+                        shop_buy_item(b_item)
                         ds_list_replace(t_plyr.plyr_items,obj_tmp_shop.shop_index,obj_gui.item_none)
                         t_plyr.plyr_attack = player_calc_stats(t_plyr)
                         obj_tmp_shop.is_showing_confirm = false 
                         
+                    }
+                    //Upgrades
+                     else if (obj_tmp_shop.shop_v_index == 2) {
+                        ds_list_replace(t_plyr.plyr_items,obj_tmp_shop.shop_index,create_random_upgrade(t_plyr.plyr_items[| obj_tmp_shop.shop_index],1000))
+                        obj_tmp_shop.is_showing_confirm = false 
                     }
                 }
             
