@@ -115,6 +115,8 @@ item_grades[3] = "C"
 item_grades[4] = "B"
 item_grades[5] = "A"
 item_grades[6] = "S"
+item_grades[7] = "SS"
+item_grades[8] = "SSS"
 
 item_types[0] = "None"
 item_types[1] = "Weapon"

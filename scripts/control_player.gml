@@ -60,8 +60,9 @@ if ((is_turn || is_party || is_enemy) && !is_viewing_items && !is_in_gui) {
         }
     
     }
-    if (key_attack && obj_mana >= 3 && !in_shop) {
+    if (key_attack && obj_mana >= 3 && !in_shop && (current_time - last_attack) > 400 ) {
         
+        last_attack = current_time
         
         if (plyr_direction == DIR_RIGHT) {
            obj_temp = instance_create(x+32,y,obj_temp_attack)

@@ -141,6 +141,7 @@ for (i = 0; i < no_players; i++) {
                     //Upgrades
                      else if (obj_tmp_shop.shop_v_index == 2) {
                         ds_list_replace(t_plyr.plyr_items,obj_tmp_shop.shop_index,create_random_upgrade(t_plyr.plyr_items[| obj_tmp_shop.shop_index],1000))
+                        t_plyr.plyr_attack = player_calc_stats(t_plyr)
                         obj_tmp_shop.is_showing_confirm = false 
                     }
                 }

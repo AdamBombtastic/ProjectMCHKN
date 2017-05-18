@@ -21,6 +21,10 @@
     <sprite>sprites\tmp_gold</sprite>
     <sprite>sprites\tmp_hp_pot</sprite>
     <sprite>sprites\tmp_shop_face</sprite>
+    <sprite>sprites\spr_mon_pupper</sprite>
+    <sprite>sprites\spr_mon_pupper_r</sprite>
+    <sprite>sprites\obj_mon_atk_lazer</sprite>
+    <sprite>sprites\obj_mon_atk_lazer_r</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\hub_tileset</background>
@@ -57,6 +61,7 @@
       <script>scripts\control_monster.gml</script>
       <script>scripts\ani_monster.gml</script>
       <script>scripts\init_monster.gml</script>
+      <script>scripts\ani_monster_img.gml</script>
     </scripts>
     <scripts name="Shop">
       <script>scripts\gui_show_player_shop.gml</script>
@@ -76,10 +81,12 @@
     <object>objects\obj_temp_player</object>
     <object>objects\obj_temp_attack</object>
     <object>objects\obj_temp_monster</object>
+    <object>objects\obj_mon_pupper</object>
     <object>objects\obj_temp_bullet</object>
     <object>objects\obj_gui</object>
     <object>objects\obj_tmp_shop</object>
     <object>objects\obj_test_particle</object>
+    <object>objects\obj_pupper_lazer</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\HUB</room>

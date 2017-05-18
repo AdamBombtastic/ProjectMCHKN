@@ -6,6 +6,7 @@ Init Player Script
 plyr_id = id
 plyr_color = c_white
 
+last_attack = current_time
 
 obj_health = 10
 obj_max_health = obj_health
