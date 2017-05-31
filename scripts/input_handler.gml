@@ -9,9 +9,23 @@ for (i = 0; i < no_players; i++) {
     t_plyr = plyr_list[| i]
     
 
+//Player has no device assigned to them. 
     if (t_plyr.controller == -99) {
         if (current_player.plyr_id == t_plyr.plyr_id) {
-            t_plyr.controller = -1
+            if (ds_list_size(available_gamepads) < 1) {
+                t_plyr.controller = -1
+            }
+            else {
+                loop_done = false
+                for (j = 0; j < ds_list_size(available_gamepads) && !loop_done ; j++) {
+                    t_pad_id = available_gamepads[| j]
+                    if (gamepad_is_connected(t_pad_id)) {
+                        t_plyr.controller = t_pad_id
+                        ds_list_delete(available_gamepads,t_pad_id)
+                        loop_done = true
+                    }
+                }
+            }
         }
         else {
             loop_done = false

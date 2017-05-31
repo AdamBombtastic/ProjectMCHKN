@@ -93,7 +93,7 @@ if (is_dead && killer != -1) {
     effect_create_above(ef_star, t_plyr.x-16, t_plyr.y-32, 1.8, merge_color(c_white,c_yellow,0.5))
     effect_create_above(ef_star, t_plyr.x+16, t_plyr.y-32, 1.8, merge_color(c_white,c_yellow,0.5))
     effect_create_above(ef_firework, other.x, other.y, 0.5, c_white);
-    
+    audio_play_sound(snd_victory,0,false)
     killer = -1
 
 }

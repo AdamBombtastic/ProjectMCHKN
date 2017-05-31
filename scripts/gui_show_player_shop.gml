@@ -206,7 +206,76 @@ else if (shop_h_index > 0) {
         draw_text(panel_start_x+415,panel_start_y+80+32,"Value: ???" )
         draw_set_color(c_white)
     }
-
+    
+    //Case buying a level ? 
+    else if (shop_v_index == 3) {
+        
+        draw_set_font(temp_font2)
+        
+        tmp_p_gold = plyr_target.plyr_gold 
+        gold_options = floor(tmp_p_gold / 1000)
+        shop_options_length = gold_options
+        
+        
+        /** More than 6 options **/
+        if (gold_options >= 6) {
+        
+            for (i = 0 +shop_scroll_index; i <= 6+shop_scroll_index; i++) {
+                draw_text((panel_start_x+20),panel_start_y+string_width("Shop")+120+((1+i-shop_scroll_index)*string_height("SHOP"))+12,string(i+1) + " Level")
+                draw_text((panel_start_x+265),panel_start_y+string_width("Shop")+120+((1+i-shop_scroll_index)*string_height("SHOP"))+12,string((i+1)*1000))
+                
+                
+                show_debug_message("SI: " + string(shop_index))
+                show_debug_message("I: " + string(i))
+                if (shop_index == i) {
+                    draw_set_alpha(0.3)
+                    draw_rectangle_colour((panel_start_x+15),panel_start_y+string_width("Shop")+120+((1+i-shop_scroll_index)*string_height("SHOP"))+12,
+                                          (panel_start_x+25+string_width("## LEVEL")),panel_start_y+string_width("Shop")+120+((1+i-shop_scroll_index)*string_height("SHOP"))+12+string_height("SHOP"),
+                                          c_white,
+                                          c_white,
+                                          c_white,
+                                          c_white,
+                                          false)
+                    draw_set_alpha(1)
+                }
+            }
+        }
+        else {
+             for (i = 0; i < gold_options; i++) {
+                draw_text((panel_start_x+20),panel_start_y+string_width("Shop")+120+((1+i)*string_height("SHOP"))+12,string(i+1) + " Level")
+                draw_text((panel_start_x+265),panel_start_y+string_width("Shop")+120+((1+i)*string_height("SHOP"))+12,string((i+1)*1000))
+                
+                if (shop_index == i) {
+                    draw_set_alpha(0.3)
+                    draw_rectangle_colour((panel_start_x+15),panel_start_y+string_width("Shop")+120+((1+i)*string_height("SHOP"))+12,
+                                          (panel_start_x+25+string_width("## LEVEL")),panel_start_y+string_width("Shop")+120+((1+i)*string_height("SHOP"))+12+string_height("SHOP"),
+                                          c_white,
+                                          c_white,
+                                          c_white,
+                                          c_white,
+                                          false)
+                    draw_set_alpha(1)
+                }
+            }
+        
+        }  
+        draw_sprite_ext(tmp_shop_face,face_image,panel_start_x+25,panel_start_y+90-32,1.5,1.5,0,c_white,1)
+        
+        if (current_time - last_time > random(500)+300) {
+            face_image += 1
+            if (face_image > face_image_end) face_image = 0
+            last_time = current_time
+        }
+        draw_set_font(temp_font2)
+        draw_roundrect_colour(panel_start_x+120,panel_start_y+80-32,panel_start_x+120 + string_width(shop_gold_sayings[0]) + 10,panel_start_y+80-32 + string_height("@")*2 + 2,c_white,c_white,false)
+        draw_roundrect_colour(panel_start_x+120,panel_start_y+80-32,panel_start_x+120 + string_width(shop_gold_sayings[0]) + 10,panel_start_y+80-32 + string_height("@")*2 + 2,c_black,c_black,true)
+        
+        draw_set_color(c_black)
+         draw_text(panel_start_x+125,panel_start_y+85-32,shop_gold_sayings[0])
+        draw_set_color(c_white)
+    
+    
+    }
 
     
 

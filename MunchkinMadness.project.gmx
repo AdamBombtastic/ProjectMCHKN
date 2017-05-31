@@ -4,7 +4,10 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\snd_victory</sound>
+    <sound>sound\snd_title_go</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\temp_player</sprite>
     <sprite>sprites\temp_attack</sprite>
@@ -30,6 +33,7 @@
     <background>background\hub_tileset</background>
     <background>background\hub_test</background>
     <background>background\hub_tile_set_mirrored</background>
+    <background>background\bg_idea_tmp</background>
   </backgrounds>
   <paths name="paths">
     <path>paths\path1</path>
@@ -56,6 +60,8 @@
       <script>scripts\gui_confirm_junk_item_dialog.gml</script>
       <script>scripts\get_item_copy_id.gml</script>
       <script>scripts\get_item_copy.gml</script>
+      <script>scripts\gamepad_check_any_pressed.gml</script>
+      <script>scripts\gamepad_load_connected.gml</script>
     </scripts>
     <scripts name="Monster">
       <script>scripts\control_monster.gml</script>
@@ -71,11 +77,18 @@
       <script>scripts\shop_buy_item.gml</script>
       <script>scripts\create_random_upgrade.gml</script>
     </scripts>
+    <scripts name="Title">
+      <script>scripts\init_title.gml</script>
+      <script>scripts\control_title.gml</script>
+      <script>scripts\draw_title.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\tmp_font</font>
     <font>fonts\temp_font2</font>
     <font>fonts\tmp_fancy_font</font>
+    <font>fonts\fnt_pxl_title</font>
+    <font>fonts\fnt_pxl_normal</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_temp_player</object>
@@ -87,8 +100,10 @@
     <object>objects\obj_tmp_shop</object>
     <object>objects\obj_test_particle</object>
     <object>objects\obj_pupper_lazer</object>
+    <object>objects\obj_title_control</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room_title</room>
     <room>rooms\HUB</room>
   </rooms>
   <help>

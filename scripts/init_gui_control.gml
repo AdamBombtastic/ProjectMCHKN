@@ -9,6 +9,8 @@ no_players = 4
 gamepads = ds_list_create()
 available_gamepads = ds_list_create()
 
+gamepad_load_connected()
+
 /** These variables control the player status objects and inventory views */
 bottom_player_y = 608
 bottom_player_x = 20

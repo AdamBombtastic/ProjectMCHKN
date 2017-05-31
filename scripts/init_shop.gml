@@ -13,6 +13,11 @@ shop_sayings[4] = "I'm hungry. . ."
 shop_sayings[5] = "Yo!"
 shop_sayings[6] = "Watch out for glowing puppers."
 
+shop_gold_sayings[0] = "Mr.Moneybags over here eh?"
+shop_gold_sayings[1] = "Taking the easy way out?"
+shop_gold_sayings[2] = "*Cough* Cheater. . . *Cough*"
+
+
 shop_options[0] = "Buy"
 shop_options[1] = "Sell"
 shop_options[2]= "Upgrade"
@@ -23,6 +28,8 @@ current_shop_saying = floor(random(array_length_1d(shop_sayings)-1))
 shop_h_index = 0
 shop_v_index = 0
 shop_index = 0
+shop_scroll_index = 0
+
 
 face_image = 1
 face_image_end = 5

@@ -94,19 +94,47 @@ for (i = 0; i < no_players; i++) {
                     
                 
                 }
-                 if (t_plyr.key_up == 1 && t_plyr.last_key_up != 1) {
-                    obj_tmp_shop.shop_index -= 1
-    
+                
+                //Case Buying Level
+                if (obj_tmp_shop.shop_v_index == 3) {
+                    if (t_plyr.key_up == 1 && t_plyr.last_key_up != 1) {
+                        obj_tmp_shop.shop_index -= 1
+                        
+        
+                    }
+                    else if (t_plyr.key_down == 1 && t_plyr.last_key_down != 1) {
+                        obj_tmp_shop.shop_index += 1
+        
+                    }
+                     if (obj_tmp_shop.shop_index < 0){
+                        obj_tmp_shop.shop_index = 0
+                     }
+                    else if (obj_tmp_shop.shop_index >= obj_tmp_shop.shop_options_length) {
+                        obj_tmp_shop.shop_index = obj_tmp_shop.shop_options_length-1
+                    }
+                    if (obj_tmp_shop.shop_index >= 6) {
+                        obj_tmp_shop.shop_scroll_index = obj_tmp_shop.shop_index - 6
+                    }
+                    else {
+                        obj_tmp_shop.shop_scroll_index = 0
+                    }
+                
                 }
-                else if (t_plyr.key_down == 1 && t_plyr.last_key_down != 1) {
-                    obj_tmp_shop.shop_index += 1
-    
-                }
-                 if (obj_tmp_shop.shop_index < 0){
-                    obj_tmp_shop.shop_index = 0
-                 }
-                else if (obj_tmp_shop.shop_index >= obj_tmp_shop.shop_options_length) {
-                    obj_tmp_shop.shop_index = obj_tmp_shop.shop_options_length-1
+                else {
+                     if (t_plyr.key_up == 1 && t_plyr.last_key_up != 1) {
+                        obj_tmp_shop.shop_index -= 1
+        
+                    }
+                    else if (t_plyr.key_down == 1 && t_plyr.last_key_down != 1) {
+                        obj_tmp_shop.shop_index += 1
+        
+                    }
+                     if (obj_tmp_shop.shop_index < 0){
+                        obj_tmp_shop.shop_index = 0
+                     }
+                    else if (obj_tmp_shop.shop_index >= obj_tmp_shop.shop_options_length) {
+                        obj_tmp_shop.shop_index = obj_tmp_shop.shop_options_length-1
+                    }
                 }
             
             }
@@ -142,6 +170,15 @@ for (i = 0; i < no_players; i++) {
                      else if (obj_tmp_shop.shop_v_index == 2) {
                         ds_list_replace(t_plyr.plyr_items,obj_tmp_shop.shop_index,create_random_upgrade(t_plyr.plyr_items[| obj_tmp_shop.shop_index],1000))
                         t_plyr.plyr_attack = player_calc_stats(t_plyr)
+                        obj_tmp_shop.is_showing_confirm = false 
+                    }
+                     //Upgrades
+                     else if (obj_tmp_shop.shop_v_index == 3) {
+                        if (t_plyr.plyr_gold >= (1+obj_tmp_shop.shop_index)*1000) {
+                            t_plyr.plyr_lvl += 1*(1+obj_tmp_shop.shop_index)
+                            t_plyr.plyr_gold -= (1+obj_tmp_shop.shop_index)*1000
+                            t_plyr.plyr_attack = player_calc_stats(t_plyr)
+                        }
                         obj_tmp_shop.is_showing_confirm = false 
                     }
                 }
